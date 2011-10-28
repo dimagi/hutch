@@ -84,4 +84,10 @@ a copy of the original attachment.  Long term this is not a tractable solution.
 However, accessing the couchdoc's attachment stream does not seem to work correctly with sorl-thumbnails templating system just yet.
 
 
+In Development
+==============
+
+Other media handling - specifically audio and video and providing appropriate containers for browser rendering.
+
+
 * About the name:  Traditionally on an office desk some of them offer a media storage unit shelf to go over the shelf, called a hutch, hence the use of the furniture pun.

@@ -1,0 +1,19 @@
+{% extends base_template %}
+{% load i18n %}
+{% load thumbnail %}
+{% block extrahead %}
+{% endblock extrahead %}
+
+{% block content %}
+<h2>Showing Attachment Image</h2>
+{% thumbnail image.image dimensions as im %}
+    <p>
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    </p>
+{% endthumbnail %}
+
+<a href="{% url hutch_proxy_original image.doc_id image.attachment_key %}"> Show Original </a>
+{% endblock content %}
+
+
+

@@ -127,6 +127,6 @@ class AttachmentImage(models.Model):
 
 
     def __unicode__(self):
-        return "%s (Filename: %s, Content-Type: %s, Size: %d)" % (self.xform_id, self.attachment_key, self.content_type, self.content_length)
+        return "%s (Filename: %s, Content-Type: %s, Size: %d)" % (self.doc_id, self.attachment_key, self.content_type, self.content_length)
 
 
