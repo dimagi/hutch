@@ -41,6 +41,9 @@ class MediaAttachmentManager(models.Manager):
 
         for aux in aux_list:
             attach_dict = couchdoc['_attachments'].get(aux['attachment_id'],None)
+            if attach_dict['content_type'].lower() not in ['image/jpeg', 'image/png', 'image/gif', 'image/tiff']:
+                #skip non media attachments
+                continue
             imgs = super(MediaAttachmentManager, self).get_query_set().filter(doc_id=couchdoc['_id'], attachment_key=aux['attachment_id'])
 
             if imgs.count() == 0:
@@ -71,6 +74,10 @@ class MediaAttachmentManager(models.Manager):
         #check if an AttachmentImage exists for it.
         ret = dict()
         for attachment_key in couchdoc['_attachments'].keys():
+            attach_dict = couchdoc['_attachments'].get(attachment_key,None)
+
+            if attach_dict['content_type'].lower() not in ['image/jpeg', 'image/png', 'image/gif', 'image/tiff']:
+                continue
             imgs = super(MediaAttachmentManager, self).get_query_set().filter(doc_id=couchdoc['_id'], attachment_key=attachment_key)
             if imgs.count() == 0:
                 #make new AttachmentImage
