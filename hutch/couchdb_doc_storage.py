@@ -9,12 +9,12 @@ from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from cStringIO import StringIO
 
+from couchdbkit.client import Database
+
 from django.conf import settings
 from django.core.files import File
 from django.core.files.storage import Storage
 from django.core.exceptions import ImproperlyConfigured
-import os
-from dimagi.utils.couch.database import PerseverentDatabase
 
 DEFAULT_SERVER= getattr(settings, 'COUCHDB_SERVER_ROOT', 'localhost:5984')
 
@@ -33,7 +33,7 @@ class CouchDBDocStorage(Storage):
 
     def __init__(self, **kwargs):
         self.couchdb_url = kwargs.get('db_url', settings.COUCH_DATABASE)
-        self.db = PerseverentDatabase(self.couchdb_url)
+        self.db = Database(self.couchdb_url)
 
     def _put_file(self, name, content):
         doc_id, attachment_key=_split_file(name)
