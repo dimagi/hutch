@@ -1,4 +1,5 @@
 {% extends base_template %}
+{% load url from future %}
 {% load i18n %}
 {% load thumbnail %}
 {% block extrahead %}
@@ -12,7 +13,7 @@
     </p>
 {% endthumbnail %}
 
-<a href="{% url hutch_proxy_original image.doc_id image.attachment_key %}"> Show Original </a>
+<a href="{% url 'hutch_proxy_original' image.doc_id image.attachment_key %}"> Show Original </a>
 {% endblock content %}
 
 
